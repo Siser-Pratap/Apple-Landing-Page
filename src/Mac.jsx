@@ -1,22 +1,26 @@
 import React from 'react'
-import { useGLTF, useScroll } from '@react-three/drei'
+import { useGLTF, useScroll, useTexture } from '@react-three/drei'
 import * as THREE from "three";
 import { useFrame } from '@react-three/fiber';
 
 const Mac = () => {
 
-let model = useGLTF("../public/mac.glb");
+let model = useGLTF("/mac.glb");
+let tex = useTexture("/red.jpg");
 let meshes = {}
 
 model.scene.traverse((e)=>{
   meshes[e.name]=e;
 })
 
-meshes.screen.rotation.x = THREE.MathUtils.degToRad(180);
+
+// meshes.matte.material.map= tex;
+
 
 let data = useScroll();
-
+console.log(meshes);
 useFrame((state, delta)=>{
+   
   meshes.screen.rotation.x = THREE.MathUtils.degToRad(180-data.offset*90);
 })
 

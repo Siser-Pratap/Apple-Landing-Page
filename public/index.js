@@ -1,3 +1,4 @@
-import mac from "./mac.glb"
+// import mac from "./mac.glb"
+import red from "./red.jpg"
 
-export default mac
+export default red;
