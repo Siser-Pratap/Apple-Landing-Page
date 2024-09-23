@@ -1,7 +1,7 @@
 import React from 'react'
-import { useGLTF } from '@react-three/drei'
+import { useGLTF, useScroll } from '@react-three/drei'
 import * as THREE from "three";
-
+import { useFrame } from '@react-three/fiber';
 
 const Mac = () => {
 
@@ -14,6 +14,11 @@ model.scene.traverse((e)=>{
 
 meshes.screen.rotation.x = THREE.MathUtils.degToRad(180);
 
+let data = useScroll();
+
+useFrame((state, delta)=>{
+  meshes.screen.rotation.x = THREE.MathUtils.degToRad(180-data.offset*90);
+})
 
 
   return (
